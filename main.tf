@@ -41,6 +41,7 @@ module "EC2_INSTANCES_APP_SERVER" {
   efs_id = module.EFS.efs_id
   subnet_id_1 = module.VPC.PRI_SUB3_ID
   subnet_id_2 = module.VPC.PRI_SUB4_ID
+  ec2_sg_id = module.IAM-SG.ec2_security_group_id
 
 }
 
