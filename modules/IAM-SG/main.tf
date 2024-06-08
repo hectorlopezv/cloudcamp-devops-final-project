@@ -42,15 +42,14 @@ tags = {
 }
 
 #RDS security group
-
 resource "aws_security_group" "rds_sg" {
   vpc_id = var.vpc_id
 
   ingress {
-    from_port   = 3306
-    to_port     = 3306
-    protocol    = "tcp"
-   security_groups = [aws_security_group.ec2_sg.id]
+    from_port        = 3306
+    to_port          = 3306
+    protocol         = "tcp"
+    security_groups  = [aws_security_group.ec2_sg.id]  # Permitir solo desde el grupo de seguridad de EC2
   }
 
   egress {
@@ -65,3 +64,25 @@ resource "aws_security_group" "rds_sg" {
   }
 }
 
+# EFS security group
+resource "aws_security_group" "efs_sg" {
+  vpc_id = var.vpc_id
+
+  ingress {
+    from_port   = 2049
+    to_port     = 2049
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "efs_sg"
+  }
+}

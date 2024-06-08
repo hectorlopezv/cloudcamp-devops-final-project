@@ -9,7 +9,7 @@ variable "db_password" {
 }
 
 variable "db_name" {
-  description = "The name of the database to create."
+  description = "The name of the initial database created when the RDS instance is created."
   type        = string
 }
 
@@ -33,4 +33,14 @@ variable "vpc_id" {
 variable "subnet_ids" {
   description = "A list of subnet IDs for the RDS instance."
   type        = list(string)
+}
+
+variable "ec2_sg_id" {
+  description = "The security group ID for the EC2 instances."
+  type        = string
+}
+variable "db_port" {
+    description = "The port for the RDS instance."
+    type        = string
+    default     = "3306"
 }
