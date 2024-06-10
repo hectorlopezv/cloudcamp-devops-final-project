@@ -44,3 +44,8 @@ variable "db_port" {
     type        = string
     default     = "3306"
 }
+variable "rds_sg_id" {
+    description = "The security group for the RDS instance."
+    type  = string
+  
+}

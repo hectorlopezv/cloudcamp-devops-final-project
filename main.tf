@@ -31,6 +31,7 @@ module "EFS" {
   vpc_id             = module.VPC.VPC_ID
   private_subnet_ids = [module.VPC.PRI_SUB3_ID, module.VPC.PRI_SUB4_ID]
   efs_security_group_id = module.IAM-SG.efs_security_group_id
+  efs_sg_id = module.IAM-SG.efs_security_group_id
 }
 
 # EC2 instances
@@ -46,6 +47,7 @@ module "EC2_INSTANCES_APP_SERVER" {
   bastion_instance_type = "t2.micro"
   bastion_key_name = "bastion-key"
   public_subnet_id = module.VPC.PUB_SUB1_ID
+  bastion_sg_id = module.IAM-SG.bastion_security_group_id
 
 }
 
@@ -58,6 +60,7 @@ module "LOAD_BALANCER_AND_TARGETS_AND_LISTENER" {
   pub_sub2_id = module.VPC.PUB_SUB2_ID
   app_server_1_id = module.EC2_INSTANCES_APP_SERVER.AWS_APP_SERVER_1_ID
   app_server_2_id = module.EC2_INSTANCES_APP_SERVER.AWS_APP_SERVER_2_ID
+  lb_sg_id = module.IAM-SG.lb_sg_id
 }
 
 
@@ -71,5 +74,6 @@ db_port         = "3306"
 vpc_id           = module.VPC.VPC_ID
 subnet_ids       = [module.VPC.PRI_SUB3_ID, module.VPC.PRI_SUB4_ID]
 ec2_sg_id        = module.IAM-SG.ec2_security_group_id
+rds_sg_id = module.IAM-SG.rds_security_group_id
 }
 

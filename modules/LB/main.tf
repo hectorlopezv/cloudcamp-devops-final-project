@@ -24,7 +24,7 @@ resource "aws_alb" "alb" {
     name = "cloudcamp-final-project-alb"
     internal = false
     load_balancer_type = "application"
-    security_groups = [aws_security_group.lb_sg.id]
+    security_groups = [var.lb_sg_id]
     subnets = [var.pub_sub1_id, var.pub_sub2_id] ## need to be accessible hence why we are using public subnets
 
     tags = {

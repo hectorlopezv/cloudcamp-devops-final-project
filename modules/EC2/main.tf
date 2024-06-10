@@ -34,7 +34,7 @@ resource "aws_instance" "bastion" {
   instance_type = var.bastion_instance_type
   key_name      = var.bastion_key_name
   subnet_id     = var.public_subnet_id
-  security_groups = [aws_security_group.bastion_sg.id]
+  security_groups = [var.bastion_sg_id]
 
   tags = {
     Name = "BastionHost"

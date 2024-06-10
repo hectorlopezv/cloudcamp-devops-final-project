@@ -1,8 +1,8 @@
 output "VPC_ID" {
-    value = aws_vpc.vpc.id
+    value = aws_vpc.cloudcamp_final_project_vpc.id
 }
 output "VPC_CIDR" {
-    value = aws_vpc.vpc.cidr_block
+    value = aws_vpc.cloudcamp_final_project_vpc.cidr_block
 }
 
 output "PUB_SUB1_ID" {
@@ -19,7 +19,7 @@ output "PRI_SUB4_ID" {
 }
 
 output "IGW_ID" {
-    value = aws_internet_gateway.igw-argocd-eks.id
+    value = aws_internet_gateway.igw-cloudcamp-final-project.id
 }
 
 output "Region" {

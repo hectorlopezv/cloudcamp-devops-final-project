@@ -22,3 +22,7 @@ variable "app_server_2_id" {
   description = "the id of the app server 2"
   type = string
 }
+variable "lb_sg_id" {
+  description = "the security group id for the load balancer"
+  type = string
+}

@@ -9,7 +9,7 @@ resource "aws_db_instance" "default" {
   password               = var.db_password             # Contraseña maestra para la base de datos
   parameter_group_name   = "default.mysql8.0"          # Grupo de parámetros para la base de datos
   publicly_accessible    = false                       # La instancia no debe ser accesible públicamente
-  vpc_security_group_ids = [aws_security_group.rds_sg.id]  # Grupos de seguridad asociados a la instancia
+  vpc_security_group_ids = [var.rds_sg_id]  # Grupos de seguridad asociados a la instancia
   db_subnet_group_name   = aws_db_subnet_group.default.name  # Grupo de subred para la instancia
 
   tags = {
