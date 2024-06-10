@@ -2,10 +2,6 @@ variable "region" {
     description = "the aws region to deploy the resources"
     type = string
 }
-variable "region" {
-    description = "the aws region to deploy the resources"
-    type = string
-}
 
 variable "instance_type" {
     description = "the instance type to deploy"

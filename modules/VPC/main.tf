@@ -1,4 +1,4 @@
-resource "aws_vpc" "cloudcamp_final_project_vpc " {
+resource "aws_vpc" "cloudcamp_final_project_vpc" {
     cidr_block = var.vpc_cidr
     assign_generated_ipv6_cidr_block = true
     enable_dns_support = true
