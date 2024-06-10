@@ -23,7 +23,6 @@ resource "aws_nat_gateway" "nat_gtw1" {
     Name = "nat_gtw1"
   }
   ## to ensure igw is created before nat gateway
-  depends_on = [var.igw_id]
 }
 
 # create a nat gateway in the public subnet 2
@@ -34,7 +33,6 @@ resource "aws_nat_gateway" "nat_gtw2" {
     Name = "nat_gtw2"
   }
   ## to ensure igw is created before nat gateway
-  depends_on = [var.igw_id]
 }
 
 

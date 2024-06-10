@@ -18,7 +18,7 @@ module "NAT_GTW" {
   pri_sub4_id = module.VPC.PRI_SUB4_ID
   pub_sub2_id = module.VPC.PUB_SUB2_ID
   igw_id      = module.VPC.IGW_ID
-  vpc_id      = module.VPC.IGW_ID
+  vpc_id      = module.VPC.VPC_ID
 
   depends_on = [module.VPC]
 }
@@ -78,7 +78,7 @@ module "RDS_MYSQL_DB" {
   source      = "./modules/rds"
   db_user     = "db-user"
   db_password = "db-password"
-  db_name     = "db-database"
+  db_name     = "Db-database"
   db_port     = "3306"
   vpc_id      = module.VPC.VPC_ID
   subnet_ids  = [module.VPC.PRI_SUB3_ID, module.VPC.PRI_SUB4_ID]
