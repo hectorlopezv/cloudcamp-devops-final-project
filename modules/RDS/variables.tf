@@ -40,12 +40,12 @@ variable "ec2_sg_id" {
   type        = string
 }
 variable "db_port" {
-    description = "The port for the RDS instance."
-    type        = string
-    default     = "3306"
+  description = "The port for the RDS instance."
+  type        = string
+  default     = "3306"
 }
 variable "rds_sg_id" {
-    description = "The security group for the RDS instance."
-    type  = string
-  
+  description = "The security group for the RDS instance."
+  type        = string
+
 }

@@ -1,10 +1,10 @@
 variable "instance_type" {
-    description = "The type of instance to launch"
-    type = string
+  description = "The type of instance to launch"
+  type        = string
 }
 variable "availability_zone" {
-    description = "The availability zone to launch the instance in"
-    type = string 
+  description = "The availability zone to launch the instance in"
+  type        = string
 }
 variable "efs_id" {
   description = "The ID of the EFS file system."

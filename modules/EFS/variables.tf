@@ -16,5 +16,5 @@ variable "efs_security_group_id" {
 variable "efs_sg_id" {
   description = "The security group ID for the EFS."
   type        = string
-  
+
 }
