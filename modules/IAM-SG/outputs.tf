@@ -9,3 +9,7 @@ output "ec2_security_group_id" {
 output "efs_security_group_id" {
   value = aws_security_group.efs_sg.id
 }
+
+output "bastion_security_group_id" {
+  value = aws_security_group.bastion_sg.id
+}

@@ -86,3 +86,38 @@ resource "aws_security_group" "efs_sg" {
     Name = "efs_sg"
   }
 }
+
+
+#Bastion Host sg# Bastion host security group
+resource "aws_security_group" "bastion_sg" {
+  vpc_id = var.vpc_id
+
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "bastion_sg"
+  }
+}
+
+# Allow bastion host to SSH into private EC2 instances
+resource "aws_security_group_rule" "allow_bastion_ssh" {
+  type        = "ingress"
+  from_port   = 22
+  to_port     = 22
+  protocol    = "tcp"
+  security_group_id = aws_security_group.ec2_sg.id
+  source_security_group_id = aws_security_group.bastion_sg.id
+}
+

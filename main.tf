@@ -42,6 +42,10 @@ module "EC2_INSTANCES_APP_SERVER" {
   subnet_id_1 = module.VPC.PRI_SUB3_ID
   subnet_id_2 = module.VPC.PRI_SUB4_ID
   ec2_sg_id = module.IAM-SG.ec2_security_group_id
+  bastion_ami_id = module.IAM-SG.bastion_security_group_id
+  bastion_instance_type = "t2.micro"
+  bastion_key_name = "bastion-key"
+  public_subnet_id = module.VPC.PUB_SUB1_ID
 
 }
 
