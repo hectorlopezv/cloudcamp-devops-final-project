@@ -1,5 +1,5 @@
 module "VPC" {
-  source = "./modules/VPC"
+  source = "./modules/vpc"
   project_name = var.project_name
   vpc_cidr = var.vpc_cidr
   pub_sub1_cidr = var.pub_sub1_cidr
@@ -11,7 +11,7 @@ module "VPC" {
 
 # nat gatweway for prive subnets and elastic ip
 module "NAT-GTW"{
-  source = "./modules/NAT"
+  source = "./modules/nat"
   pub_sub1_id = module.VPC.PUB_SUB1_ID
   pri_sub3_id = module.VPC.PRI_SUB3_ID
   pri_sub4_id = module.VPC.PRI_SUB4_ID
@@ -22,7 +22,7 @@ module "NAT-GTW"{
 
 # security groups
 module "IAM-SG"{
-  source = "./modules/IAM-SG"
+  source = "./modules/iamsg"
   vpc_id = module.VPC.VPC_ID
 }
 #Efs file system for private subnets
@@ -54,7 +54,7 @@ module "EC2_INSTANCES_APP_SERVER" {
 #Adding the load balancer
 
 module "LOAD_BALANCER_AND_TARGETS_AND_LISTENER" {
-  source = "./modules/LB"
+  source = "./modules/lb"
   vpc_id = module.VPC.VPC_ID
   pub_sub1_id = module.VPC.PUB_SUB1_ID
   pub_sub2_id = module.VPC.PUB_SUB2_ID
@@ -66,7 +66,7 @@ module "LOAD_BALANCER_AND_TARGETS_AND_LISTENER" {
 
 #RDS DB Mysql
 module "RDS_MYSQL_DB"{
-  source = "./modules/RDS"
+  source = "./modules/rds"
   db_user          = "db-user"
 db_password      = "db-password"
 db_name          = "db-database"
