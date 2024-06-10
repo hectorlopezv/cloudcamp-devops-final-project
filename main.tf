@@ -36,7 +36,7 @@ module "EFS" {
 
 # EC2 instances
 module "EC2_INSTANCES_APP_SERVER" {
-  source = "./modules/EC2"
+  source = "./modules/ec2"
   availability_zone = "us-east-1"
   instance_type = "t2.micro"
   efs_id = module.EFS.efs_id
