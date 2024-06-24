@@ -14,3 +14,6 @@ echo "${efs_id}:/ /home/ec2-user/app/env efs defaults,_netdev 0 0" | sudo tee -a
 
 # Instalar Python 3 y Git
 sudo dnf install -y python3 git
+sudo dnf install 'dnf-command(copr)'
+sudo dnf copr enable @caddy/caddy
+sudo dnf install caddy

@@ -13,16 +13,15 @@ resource "aws_db_instance" "rds_instance" {
   instance_class         = "db.t3.micro"
   engine                 = "mysql"
   engine_version         = "8.0"
-  db_name                = "myinstancerds"                      # Nombre de la base de datos creada al momento de la creación
-  username               = "admin"                      # Nombre de usuario maestro para la base de datos
-  password               = "db-password"                  # Contraseña maestra para la base de datos
-  parameter_group_name   = "default.mysql8.0"               # Grupo de parámetros para la base de datos
-  publicly_accessible    = false                            # La instancia no debe ser accesible públicamente
-  vpc_security_group_ids = [var.rds_sg_id]                  # Grupos de seguridad asociados a la instancia
-  db_subnet_group_name   = aws_db_subnet_group.rds_subnet_group.name # Grupo de subred para la instancia
-
+  db_name                = "myinstancerds"                      # Database name created at the moment of creation
+  username               = "db-user"                            # Master username for the database
+  password               = "admin"                              # Master password for the database
+  parameter_group_name   = "default.mysql8.0"                   # Parameter group for the database
+  publicly_accessible    = false                                # The instance should not be publicly accessible
+  vpc_security_group_ids = [var.rds_sg_id]                      # Security groups associated with the instance
+  db_subnet_group_name   = aws_db_subnet_group.rds_subnet_group.name # Subnet group for the instance
+  skip_final_snapshot    = true
   tags = {
     Name = "mydbinstance"
   }
 }
-
