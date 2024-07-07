@@ -84,26 +84,3 @@
         name: caddy
         state: started
         enabled: yes
-
-    - name: Restart Caddy to apply new configuration
-      service:
-        name: caddy
-        state: restarted
-
-    - name: Get Caddy service status
-      command: systemctl status caddy.service
-      register: caddy_status
-      failed_when: false
-
-    - name: Print Caddy service status
-      debug:
-        var: caddy_status.stdout_lines
-
-    - name: Get Caddy service logs
-      command: journalctl -xeu caddy.service
-      register: caddy_logs
-      failed_when: false
-
-    - name: Print Caddy service logs
-      debug:
-        var: caddy_logs.stdout_lines
