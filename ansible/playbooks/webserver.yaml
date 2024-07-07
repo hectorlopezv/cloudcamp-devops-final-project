@@ -68,11 +68,6 @@
         name: caddy
         state: present
 
-    - name: Ensure Caddy service is started and enabled
-      service:
-        name: caddy
-        state: started
-        enabled: yes
 
     - name: Replace Caddyfile with the desired configuration
       copy:
@@ -84,6 +79,12 @@
         owner: ec2-user
         group: ec2-user
         mode: '0644'
+
+    - name: Ensure Caddy service is started and enabled
+      service:
+        name: caddy
+        state: started
+        enabled: yes
 
     - name: Restart Caddy to apply new configuration
       service:
