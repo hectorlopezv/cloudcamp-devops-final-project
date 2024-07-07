@@ -14,8 +14,8 @@ resource "aws_db_instance" "rds_instance" {
   engine                 = "mysql"
   engine_version         = "8.0"
   db_name                = "myinstancerds"                      # Database name created at the moment of creation
-  username               = "db-user"                            # Master username for the database
-  password               = "admin"                              # Master password for the database
+  username               = "admin"                            # Master username for the database
+  password               = "admin123456"                              # Master password for the database
   parameter_group_name   = "default.mysql8.0"                   # Parameter group for the database
   publicly_accessible    = false                                # The instance should not be publicly accessible
   vpc_security_group_ids = [var.rds_sg_id]                      # Security groups associated with the instance

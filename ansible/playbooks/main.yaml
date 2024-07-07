@@ -1,0 +1,5 @@
+- name: 'deploy application'
+  hosts: localhost
+  tasks:
+    - include_tasks: webserver.yaml
+    - include_tasks: database.yaml
