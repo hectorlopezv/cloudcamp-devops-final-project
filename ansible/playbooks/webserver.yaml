@@ -60,9 +60,8 @@
         executable: /bin/bash
 
     - name: Enable Caddy repository
-      command: yum -y copr enable @caddy/caddy epel-7-$(arch)
-      args:
-        warn: false
+      command: dnf -y copr enable @caddy/caddy epel-7-x86_64
+      ignore_errors: yes
 
     - name: Install Caddy
       dnf:
