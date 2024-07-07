@@ -77,8 +77,7 @@
     - name: Replace Caddyfile with the desired configuration
       copy:
         content: |
-          {
-          localhost:80{
+          :80 {
               reverse_proxy localhost:5000
           }
         dest: /etc/caddy/Caddyfile
