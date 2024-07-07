@@ -1,7 +1,0 @@
-bastion_host_ip: "{{ lookup('env', 'BASTION_HOST_IP') }}"
-node02_ip: "{{ lookup('env', 'NODE02_IP') }}"
-node03_ip: "{{ lookup('env', 'NODE03_IP') }}"
-ssh_key_path_01: "../../bastion-key.pem"
-ssh_key_path_02: "../../aws_app_server_1_private_key.pem"
-ssh_key_path_03: "../../aws_app_server_2_private_key.pem"
-ec2_user: "ec2-user"

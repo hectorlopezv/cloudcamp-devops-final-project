@@ -1,89 +1,81 @@
 ---
 - hosts: web_servers
+  become: yes
   tasks:
     - name: Install yum-plugin-copr
-      become: yes
       dnf:
         name: yum-plugin-copr
         state: present
 
     - name: Install Docker
-      become: yes
       dnf:
         name: docker
         state: present
 
     - name: Start and enable Docker service
-      become: yes
       service:
         name: docker
         state: started
         enabled: yes
 
     - name: Install Git
-      become: yes
       dnf:
         name: git
         state: present
 
+    - name: Ensure Python 3 is installed
+      dnf:
+        name: python3
+        state: present
+
     - name: Download get-pip.py
-      become: yes
       get_url:
         url: https://bootstrap.pypa.io/get-pip.py
         dest: /tmp/get-pip.py
 
     - name: Install pip
-      become: yes
       command: python3 /tmp/get-pip.py --user
 
     - name: Clone the Python Flask application repository
-      become: yes
       git:
         repo: https://github.com/hectorlopezv/python-flash-application
-        dest: /home/{{ ec2_user }}/python-flash-application
+        dest: /home/ec2-user/python-flash-application
 
     - name: Create a Python virtual environment
-      become: yes
-      command: python3 -m venv /home/{{ ec2_user }}/python-flash-application/venv
+      command: python3 -m venv /home/ec2-user/python-flash-application/venv
 
     - name: Activate the virtual environment and install requirements
-      become: yes
       shell: |
-        source /home/{{ ec2_user }}/python-flash-application/venv/bin/activate
-        pip3 install -r /home/{{ ec2_user }}/python-flash-application/requirements.txt
+        source /home/ec2-user/python-flash-application/venv/bin/activate
+        pip3 install -r /home/ec2-user/python-flash-application/requirements.txt
         pip3 install "flask<3" "werkzeug<3"
       args:
         executable: /bin/bash
 
     - name: Run Flask application in the background
-      become: yes
       shell: |
-        source /home/{{ ec2_user }}/python-flash-application/venv/bin/activate
+        source /home/ec2-user/python-flash-application/venv/bin/activate
         nohup python3 -m flask run --host=0.0.0.0 &
       args:
         executable: /bin/bash
 
     - name: Enable Caddy repository
-      become: yes
       command: yum -y copr enable @caddy/caddy epel-7-$(arch)
       args:
         warn: false
 
     - name: Install Caddy
-      become: yes
       dnf:
         name: caddy
         state: present
 
     - name: Ensure Caddy service is started and enabled
-      become: yes
       service:
         name: caddy
         state: started
         enabled: yes
 
     - name: Replace Caddyfile with the desired configuration
-      become: yes
       copy:
         content: |
           {
@@ -96,7 +88,6 @@
         mode: '0644'
 
     - name: Restart Caddy to apply new configuration
-      become: yes
       service:
         name: caddy
         state: restarted
