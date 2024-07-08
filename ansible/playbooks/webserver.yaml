@@ -25,7 +25,7 @@
 
     - name: Ensure Python  is installed
       dnf:
-        name: python
+        name: python3
         state: present
 
     - name: Download get-pip.py
@@ -34,7 +34,7 @@
         dest: /tmp/get-pip.py
 
     - name: Install pip
-      command: python /tmp/get-pip.py --user
+      command: python3 /tmp/get-pip.py --user
 
     - name: Clone the Python Flask application repository
       git:
@@ -42,7 +42,7 @@
         dest: /home/ec2-user/python-flash-application
 
     - name: Create a Python virtual environment
-      command: python -m venv /home/ec2-user/python-flash-application/venv
+      command: python3 -m venv /home/ec2-user/python-flash-application/venv
 
     - name: Activate the virtual environment and install requirements
       shell: |
@@ -54,7 +54,7 @@
 
     - name: Run Flask application in the background
       shell: |
-        python -m flask run --host=0.0.0.0 --port=5000
+        python3 -m flask run --host=0.0.0.0 --port=5000
       args:
         executable: /bin/bash
 
