@@ -55,7 +55,8 @@
     - name: Run Flask application in the background
       shell: |
         source /home/ec2-user/python-flash-application/venv/bin/activate
-        python -m flask run --host=0.0.0.0 --port=5000
+        cd /home/ec2-user/python-flash-application
+        nohup flask run --host=0.0.0.0 --port=5000 &
       args:
         executable: /bin/bash
 
