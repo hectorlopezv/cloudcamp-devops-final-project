@@ -54,7 +54,7 @@
 
     - name: Run Flask application in the background
       shell: |
-        python3 -m flask run --host=0.0.0.0 &
+        python3 -m flask run --host=0.0.0.0 --port=5000
       args:
         executable: /bin/bash
 
