@@ -20,12 +20,17 @@ chmod 400 aws_app_server_2_private_key.pem
 
 ## Connect to ec2 instance
 ssh -i ./bastion-key.pem ec2-user@ec2-xxxx.compute-1.amazonaws.com
-## copy keys 
-scp -i ./bastion-key.pem ./bastion-key.pem  ec2-user@ec2-xxxxxx.compute-1.amazonaws.com:~
+## copy keys to bastion host
+scp -i ./bastion-key.pem ./ws_app_server_1_private_key.pem  ec2-user@bastion_ip:~
+scp -i ./bastion-key.pem ./ws_app_server_2_private_key.pem  ec2-user@bastion_ip:~
+## execute configuration automation with ansible(install ansible on bastion host)
+# it will install a caddy reverse proxy and run flask app on port 5000 on background
+git clone https://github.com/hectorlopezv/cloudcamp-devops-final-project.git
+cd cloudcamp-devops-final-project/ansible
+ansible-playbook playbooks/webserver.yaml 
 
-
-## install python and pip
-python3 -m ensurepip --upgrade
 
 ## connect to the mysql server from app instances 
 mysql -u <username> -p -h <mysql_server_dns>
+
+## run app through Load balancer DNS
