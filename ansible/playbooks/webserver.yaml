@@ -46,6 +46,7 @@
 
     - name: Activate the virtual environment and install requirements
       shell: |
+        source /home/ec2-user/python-flash-application/venv/bin/activate
         pip install flask
         pip install -r /home/ec2-user/python-flash-application/requirements.txt
         pip install "flask<3" "werkzeug<3"
